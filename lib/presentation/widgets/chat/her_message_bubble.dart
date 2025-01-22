@@ -25,8 +25,6 @@ class HerMessageBubble extends StatelessWidget {
         _ImageBubble(),
 
         const SizedBox(height: 10),
-
-        // Todo: imagen
       ],
     );
   }
@@ -44,7 +42,17 @@ class _ImageBubble extends StatelessWidget {
         'https://yesno.wtf/assets/yes/4-c53643ecec77153eefb461e053fb4947.gif',
         width: size.width * 0.9,
         height: 150,
-        fit: BoxFit.cover,
+        fit: BoxFit.cover, //ESto sirve para devolver la img redondeada
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+
+          return Container(
+            width: size.width * 0.7,
+            height: 150,
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: const Text('Esta enviando un mensaje'),
+          );
+        },
       ),
     );
   }
