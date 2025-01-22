@@ -20,9 +20,10 @@ class AppTheme {
 
   ThemeData theme() {
     return ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed:
-            _colorThemes[selectedColor], //Hacer paleta de colores en theme
-        brightness: Brightness.dark); //Para ponerlo en modo oscuro
+      useMaterial3: true,
+      colorSchemeSeed:
+          _colorThemes[selectedColor], //Hacer paleta de colores en theme
+      // brightness: Brightness.dark //Para ponerlo en modo oscuro
+    );
   }
 }
