@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
 
 class HerMessageBubble extends StatelessWidget {
-  const HerMessageBubble({super.key});
+  final Message message;
+  const HerMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +17,15 @@ class HerMessageBubble extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              'Hola mundo',
+              message.text,
               style: TextStyle(color: Colors.white),
             ),
           ),
         ),
         const SizedBox(height: 5), //Separacion entre los elementos
 
-        _ImageBubble(),
+        if (message.imageUrl != null) // Verifica si imageUrl no es nulo
+          _ImageBubble(imageUrl: message.imageUrl!),
 
         const SizedBox(height: 10),
       ],
@@ -31,6 +34,8 @@ class HerMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
+  final String imageUrl;
+  const _ImageBubble({required this.imageUrl});
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context)
@@ -39,7 +44,7 @@ class _ImageBubble extends StatelessWidget {
       //Es un click que nos permite hacer bordes redondeados
       borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        'https://yesno.wtf/assets/yes/4-c53643ecec77153eefb461e053fb4947.gif',
+        imageUrl,
         width: size.width * 0.9,
         height: 150,
         fit: BoxFit.cover, //ESto sirve para devolver la img redondeada
